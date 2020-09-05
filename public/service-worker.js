@@ -80,27 +80,27 @@ self.addEventListener("activate", event => {
 
 
 // Listen to fetch requests, network with fall back to cache
-// self.addEventListener('fetch', function (event) {
-//     if (event.request.method === "GET") {
-//         event.respondWith(
-//             fetch(event.request) // try to make a request for it
-//                 .then((response) => {
-//                     return caches.open(STATIC_CACHE)
-//                         .then((cache) => { // store the result for the future
-//                             cache.put(event.request, response.clone())
-//                             return response // and return it
-//                         })
-//                 })
-//                 .catch(() => { // otherwise try to find it in our cache
-//                     caches.match(event.request)
-//                         .then((response) => {
-//                             return response
-//                         })
-//                         .catch(() => { // default if everything fails
-//                             return caches.match('./index.html')
-//                         })
-//                 })
-//         )
-//     }
-// })
+self.addEventListener('fetch', function (event) {
+    if (event.request.method === "GET") {
+        event.respondWith(
+            fetch(event.request) // try to make a request for it
+                .then((response) => {
+                    return caches.open(STATIC_CACHE)
+                        .then((cache) => { // store the result for the future
+                            cache.put(event.request, response.clone())
+                            return response // and return it
+                        })
+                })
+                .catch(() => { // otherwise try to find it in our cache
+                    caches.match(event.request)
+                        .then((response) => {
+                            return response
+                        })
+                        .catch(() => { // default if everything fails
+                            return caches.match('./index.html')
+                        })
+                })
+        )
+    }
+})
 

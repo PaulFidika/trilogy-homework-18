@@ -1,6 +1,6 @@
 const router = require("express").Router()
 const path = require('path')
-const Transaction = require(path.resolve(__dirname, "../models/transaction.js"))
+const Transaction = require("../models/transaction.js")
 
 router.post("/api/transaction", ({ body }, res) => {
   console.log('api post route hit')
