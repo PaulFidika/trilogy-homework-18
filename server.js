@@ -16,6 +16,12 @@ mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useFindAndModify: false
 })
+  .then(() => {
+    console.log('database connection successful')
+  })
+  .catch((err) => {
+    console.log('database connection error: ' + err)
+  })
 
 // routes
 app.use(require("./routes/html.js"))
