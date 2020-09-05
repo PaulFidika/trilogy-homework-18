@@ -25,6 +25,8 @@ router.post("/api/transaction/bulk", ({ body }, res) => {
 });
 
 router.get("/api/transaction", (req, res) => {
+  console.log('cheese-------------------------------')
+  console.log(Transaction)
   Transaction.find({}).sort({ date: -1 })
     .then(dbTransaction => {
       console.log('monkey--------------------')
