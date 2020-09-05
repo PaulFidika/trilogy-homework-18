@@ -3,6 +3,7 @@ const logger = require("morgan")
 const mongoose = require("mongoose")
 const compression = require("compression")
 require('dotenv').config()
+const path = require('path')
 const PORT = process.env.PORT || 3001
 const app = express()
 
